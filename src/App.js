@@ -5,6 +5,62 @@ import { useRef, useState } from 'react'
 // import store items and id's from store-items.js
 import initialStoreItems from './store-items'
 
+// i have pasted this in the app.js as it makes it easier to refer to.
+// const storeItems =  [
+//   {
+//     id: "001-beetroot",
+//     name: "beetroot",
+//     price: 0.35
+//   },
+//   {
+//     id: "002-carrot",
+//     name: "carrot",
+//     price: 0.35
+//   },
+//   {
+//     id: "003-apple",
+//     name: "apple",
+//     price: 0.35
+//   },
+//   {
+//     id: "004-apricot",
+//     name: "apricot",
+//     price: 0.35
+//   },
+//   {
+//     id: "005-avocado",
+//     name: "avocado",
+//     price: 0.35
+//   },
+//   {
+//     id: "006-bananas",
+//     name: "bananas",
+//     price: 0.35
+//   },
+//   {
+//     id: "007-bell-pepper",
+//     name: "bell pepper",
+//     price: 0.35
+//   },
+//   {
+//     id: "008-berry",
+//     name: "berry",
+//     price: 0.35
+//   },
+//   {
+//     id: "009-blueberry",
+//     name: "blueberry",
+//     price: 0.35
+//   },
+//   {
+//     id: "010-eggplant",
+//     name: "eggplant",
+//     price: 0.35
+//   }
+// ]
+
+// export default storeItems
+
 export default function App() {
 
   const [food, setCart] = useState(initialStoreItems)
@@ -93,6 +149,7 @@ export default function App() {
     let total = 0
 // use an if statement to update the total according to food items and quantity, and add the different items in the cart.
     food.forEach((item) => {
+// if item quantity is greater than zero, update the total to display item quantity times price.
       if (item.quantity > 0) {
         total = + ((Number(item.price) * Number(item.quantity)) + total).toFixed(2)
       }
@@ -103,6 +160,7 @@ export default function App() {
 // create a function that will display items in ascending/decending order. To do this
 // I will have to use if statements 
   function sortingSpecific(property, ascendingOrDescending){
+// if ascending is selected display property in order of lowest first
     if (ascendingOrDescending === "ascending") {
     var sortOrder = 1
     if (property[0] === "-") {
@@ -161,10 +219,12 @@ export default function App() {
         {/* use a break to ensure buttons are displayed in two horizontal lines */}
         <div className='store--item-list'>
         {/* to display these two lines of items in two horizontal lines I need to create a second div */}
+        {/* alpahbetical order */}
         <button onClick={sortAtoZ}>Sort A-Z</button>
+        {/* reverse alphabetical order */}
         <button onClick={sortZtoA}>Sort Z-A</button>
-        <button onClick={sortPriceDecrease}>Sort by price increase</button>
-        <button onClick={sortPriceIncrease}>Sort by price decrease</button>
+        <button onClick={sortPriceDecrease}>Sort by price decrease</button>
+        <button onClick={sortPriceIncrease}>Sort by price increase</button>
         </div><br></br>
         {/* use another break so that the images and item details will display below the filtering options */}
         <ul className="item-list store--item-list">

@@ -72,6 +72,7 @@ export default function App() {
     food.forEach((item) => {
       if (["apple", "apricot", "avocado", "bananas", "berry", "blueberry"].includes(item.name)) {
         item.type = "fruit"
+// all other items not named previously will be assigned as vegetables
       } else {
         item.type = "vegetable"
       }
@@ -134,10 +135,10 @@ export default function App() {
           src={`/assets/icons/${item.id}.svg`}
           alt={item.name}
         />
-        {/* use a p element to display item name */}
+{/* use a p element to display item name */}
         <p>{item.name}</p>
         <button className="quantity-btn remove-btn center" onClick={() => minusOne(item)}>-</button>
-        {/* use a span to display the quantity number in accordance with the quantity entered */}
+{/* use a span to display the quantity number in accordance with the quantity entered */}
         <span className="quantity-text center">{item.quantity}</span>
         <button className="quantity-btn add-btn center" onClick={() => addOne(item)}>+</button>
       </li>
@@ -168,7 +169,7 @@ export default function App() {
       property = property.substr(1)
     }
     return function (a,b){
-    // to sort these i need to specify the order.
+// to sort these i need to specify the order.
       var result = (a[property] < b[property] ? -1 : (a[property] > b[property]))
       return result * sortOrder
     }} else if (ascendingOrDescending === "descending") {
@@ -199,54 +200,54 @@ export default function App() {
   function sortPriceIncrease(){
     setCart (filteredItems.sort(sortingSpecific("price", "descending")))
   }
-// log the result
+// log the result(fruit, quantity, price)
   console.log(`input= ${inputRef.current?.value}`)
 // create buttons for the filtering options and insert the text required into them
   return (
     <>
       <header id="store">
         <h1>Greengrocers</h1>
-        {/* use classname to ensure that any sorting will happen in the basket and not the cart */}
+{/* use classname to ensure that any sorting will happen in the basket and not the cart */}
         <div className='store--item-list'>
-          {/* use onClick to enable the filtering specified when button is clicked */}
+{/* use onClick to enable the filtering specified when button is clicked */}
         <button onClick={() => filterByType("fruit")}>Show Fruits</button>
         <button onClick={() => filterByType("vegetable")}>Show Vegetables</button>
-        {/* create a button to remove all the filters entered previously and display all items */}
+{/* create a button to remove all the filters entered previously and display all items */}
         <button onClick={() => filterByType(("all"))}>Clear filters</button>
-        {/* for the search box, have a placeholder text that will display when nothing is input */}
+{/* for the search box, have a placeholder text that will display when nothing is input */}
         <input placeholder="Name" ref={inputRef} value={search} onChange={e => setSearch(e.target.value)} />
         </div><br></br>
-        {/* use a break to ensure buttons are displayed in two horizontal lines */}
+{/* use a break to ensure buttons are displayed in two horizontal lines */}
         <div className='store--item-list'>
-        {/* to display these two lines of items in two horizontal lines I need to create a second div */}
-        {/* alpahbetical order */}
+{/* to display these two lines of items in two horizontal lines I need to create a second div */}
+{/* alpahbetical order */}
         <button onClick={sortAtoZ}>Sort A-Z</button>
-        {/* reverse alphabetical order */}
+{/* reverse alphabetical order */}
         <button onClick={sortZtoA}>Sort Z-A</button>
         <button onClick={sortPriceDecrease}>Sort by price decrease</button>
         <button onClick={sortPriceIncrease}>Sort by price increase</button>
         </div><br></br>
-        {/* use another break so that the images and item details will display below the filtering options */}
+{/* use another break so that the images and item details will display below the filtering options */}
         <ul className="item-list store--item-list">
           {filteredItems.map((food, index) => (
-        // display items in cart when filtered 
+// display items in cart when filtered 
             <li key={index}>
               <div className="store--item-icon">
-                {/* display the image of the food item by selecting the relevant svg */}
+{/* display the image of the food item by selecting the relevant svg */}
                 <img src={`/assets/icons/${food.id}.svg`} alt={food.name} />
               </div>
-              {/* when "add to cart" is clicked add item and details to the cart */}
+{/* when "add to cart" is clicked add item and details to the cart */}
               <button onClick={() => addOne(food)}>Add to cart</button>
             </li>
           ))
           }
         </ul>
       </header>
-      {/* create the cart for items to be displayed in */}
+{/* create the cart for items to be displayed in */}
       <main id="cart">
-        {/* title */}
+{/* title */}
         <h2>Your Cart</h2>
-        {/* use an unordered list to display the items in the cart */}
+{/* use an unordered list to display the items in the cart */}
         <div className="cart--item-list-container">
           <ul className="item-list cart--item-list">
 
@@ -256,12 +257,12 @@ export default function App() {
 
           </ul>
         </div>
-        {/* create a section for the total amount */}
+{/* create a section for the total amount */}
         <div className="total-section">
           <div>
             <h3>Total</h3>
           </div>
-  {/* in a separate div element, display the text containing the total */}
+{/* in a separate div element, display the text containing the total */}
           <div>
             <span className="total-number">£{calculateTotal()}</span>
           </div>
